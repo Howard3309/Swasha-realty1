@@ -87,19 +87,19 @@ export default function Overview() {
               <div className="font-serif text-5xl md:text-6xl text-charcoal mb-2">
                 <Counter to={44} />
               </div>
-              <div className="text-sm tracking-widest uppercase text-charcoal/60 font-semibold">Bespoke Residences</div>
+              <div className="text-sm tracking-widest uppercase text-charcoal/60 font-semibold">Luxury Residences</div>
             </motion.div>
             
             <motion.div variants={itemVariants} className="border-l border-charcoal/20 pl-6">
               <div className="font-serif text-5xl md:text-6xl text-charcoal mb-2">
-                <Counter to={22} />
+                <Counter to={11} />
               </div>
               <div className="text-sm tracking-widest uppercase text-charcoal/60 font-semibold">Floors of Elevation</div>
             </motion.div>
 
             <motion.div variants={itemVariants} className="border-l border-charcoal/20 pl-6">
               <div className="font-serif text-5xl md:text-6xl text-charcoal mb-2">
-                <Counter to={2028} from={2000} duration={2.5} />
+                <Counter to={2029} from={2000} duration={2.5} />
               </div>
               <div className="text-sm tracking-widest uppercase text-charcoal/60 font-semibold">Completion</div>
             </motion.div>
