@@ -1,0 +1,74 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --color-charcoal: #14151A;
+  --color-offwhite: #F5F2EC;
+  --color-gold: #B79A5D;
+  --color-forest: #2C4C3B;
+  
+  --font-serif: var(--font-playfair), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-charcoal text-offwhite font-sans antialiased selection:bg-gold/30 selection:text-offwhite;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-normal tracking-tight;
+  }
+}
+.reveal {
+  animation: reveal linear both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 28%;
+}
+.deferred-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 800px;
+}
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes testimonial-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    animation: none;
+  }
+}
+@media (max-width: 640px) {
+  .nav-surface {
+    backdrop-filter: none;
+  }
+}
