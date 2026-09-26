@@ -1,4 +1,5 @@
 import { MapPin, Navigation, Compass } from 'lucide-react';
+import SplitHeading from '@/components/sections/Splitheading';
 
 const landmarks = [
   { name: 'Financial District', time: '5 mins', type: 'drive' },
@@ -15,10 +16,12 @@ export default function Location() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
           
           <div className="lg:col-span-5">
-            <div className="reveal">
-              <span className="text-charcoal/60 tracking-[0.2em] text-sm font-semibold uppercase mb-4 block">Location</span>
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-charcoal mb-8">Connected to the Core</h2>
-              <p className="text-charcoal/70 text-lg leading-relaxed mb-12">
+            <div>
+              <span className="reveal text-charcoal/60 tracking-[0.2em] text-sm font-semibold uppercase mb-4 block">Location</span>
+              <SplitHeading className="font-serif text-4xl md:text-5xl lg:text-6xl text-charcoal mb-8">
+                Connected to the Core
+              </SplitHeading>
+              <p className="reveal text-charcoal/70 text-lg leading-relaxed mb-12">
                 Situated in the city&apos;s most coveted zip code, Swasha Realty places you at the intersection of commerce, culture, and convenience. Enjoy quiet residential streets just moments away from the vibrant urban pulse.
               </p>
             </div>

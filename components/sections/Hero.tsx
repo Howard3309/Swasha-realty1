@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import SplitHeading from '@/components/sections/Splitheading';
 
 const heroScenes = [
   {
@@ -170,15 +171,15 @@ const handlePhotoClick = () => {
           Residences at the Peak
         </motion.p>
 
-        <motion.h1
-          onClick={handleContentClick}
-          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="font-serif text-5xl md:text-7xl lg:text-8xl text-offwhite max-w-5xl leading-tight md:leading-none tracking-tight mb-10"
-        >
-          Elevated Living, Rooted in Craft
-        </motion.h1>
+        <div onClick={handleContentClick}>
+          <SplitHeading
+            as="h1"
+            delay={0.4}
+            className="font-serif text-5xl md:text-7xl lg:text-8xl text-offwhite max-w-5xl leading-tight md:leading-none tracking-tight mb-10"
+          >
+            Elevated Living, Rooted in Craft
+          </SplitHeading>
+        </div>
 
         <motion.div
           initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}

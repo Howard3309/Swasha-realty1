@@ -186,15 +186,26 @@ export default function FloorPlans() {
   const shouldReduceMotion = useReducedMotion();
   const [activeFloorId, setActiveFloorId] = useState(floorGroups[0].id);
   const [activeFlatId, setActiveFlatId] = useState(floorGroups[0].flats[0].id);
+  const [transitionDirection, setTransitionDirection] = useState(1);
 
   const activeFloor = floorGroups.find((f) => f.id === activeFloorId)!;
   const activeFlat = activeFloor.flats.find((f) => f.id === activeFlatId)!;
+  const activeFloorIndex = floorGroups.findIndex((f) => f.id === activeFloorId);
+  const activeFlatIndex = activeFloor.flats.findIndex((f) => f.id === activeFlatId);
 
   function selectFloor(floorId: string) {
     const floor = floorGroups.find((f) => f.id === floorId)!;
+    const floorIndex = floorGroups.findIndex((f) => f.id === floorId);
+    setTransitionDirection(floorIndex >= activeFloorIndex ? 1 : -1);
     setActiveFloorId(floorId);
     // reset to the first flat in the newly selected floor group
     setActiveFlatId(floor.flats[0].id);
+  }
+
+  function selectFlat(flatId: string) {
+    const flatIndex = activeFloor.flats.findIndex((flat) => flat.id === flatId);
+    setTransitionDirection(flatIndex >= activeFlatIndex ? 1 : -1);
+    setActiveFlatId(flatId);
   }
 
   return (
@@ -233,7 +244,7 @@ export default function FloorPlans() {
           {activeFloor.flats.map((flat) => (
             <button
               key={flat.id}
-              onClick={() => setActiveFlatId(flat.id)}
+              onClick={() => selectFlat(flat.id)}
               className={`px-8 py-3 text-sm font-semibold tracking-wider transition-colors duration-300 ${
                 activeFlatId === flat.id
                   ? 'bg-charcoal text-gold'
@@ -251,10 +262,10 @@ export default function FloorPlans() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeFlat.id}
-                initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : -20 }}
+                initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : transitionDirection * 14 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : 20 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                exit={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : transitionDirection * -14 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               >
                 <h3 className="font-serif text-3xl md:text-4xl text-charcoal mb-2">{activeFlat.name}</h3>
                 <div className="flex items-center gap-4 text-charcoal/60 mb-10 text-sm tracking-wider uppercase font-medium">
@@ -284,10 +295,10 @@ export default function FloorPlans() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeFlat.id}
-                initial={{ opacity: shouldReduceMotion ? 1 : 0, scale: shouldReduceMotion ? 1 : 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: shouldReduceMotion ? 1 : 0, scale: shouldReduceMotion ? 1 : 1.02 }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : transitionDirection * 12 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : transitionDirection * -12 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 className="relative aspect-[4/3] bg-white border border-charcoal/10 overflow-hidden"
               >
                 <Image

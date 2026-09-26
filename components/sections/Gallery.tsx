@@ -4,6 +4,8 @@ import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import Image from 'next/image';
 import { useState } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import ImageReveal from '@/components/ImageReveal';
+import SplitHeading from '@/components/sections/Splitheading';
 
 const images = [
   { src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop', alt: 'Grand Lobby' },
@@ -38,9 +40,11 @@ export default function Gallery() {
   return (
     <section id="gallery" className="deferred-section py-24 md:py-32 bg-charcoal">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="reveal text-center mb-16">
-          <span className="text-gold tracking-[0.2em] text-sm font-semibold uppercase mb-4 block">Visuals</span>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-offwhite">A Closer Look</h2>
+        <div className="text-center mb-16">
+          <span className="reveal text-gold tracking-[0.2em] text-sm font-semibold uppercase mb-4 block">Visuals</span>
+          <SplitHeading className="font-serif text-4xl md:text-5xl lg:text-6xl text-offwhite">
+            A Closer Look
+          </SplitHeading>
         </div>
 
         {/* Simple Masonry / Grid */}
@@ -53,18 +57,20 @@ export default function Gallery() {
                 idx === 0 || idx === 3 ? 'md:col-span-2 lg:col-span-2 aspect-[16/9]' : 'aspect-square'
               }`}
             >
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                loading="lazy"
-                quality={70}
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-charcoal/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                <span className="text-offwhite font-serif tracking-widest text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">{img.alt}</span>
-              </div>
+              <ImageReveal className="absolute inset-0 overflow-hidden">
+                <Image
+                  src={img.src}
+                  alt={img.alt}
+                  fill
+                  loading="lazy"
+                  quality={70}
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-charcoal/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                  <span className="text-offwhite font-serif tracking-widest text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">{img.alt}</span>
+                </div>
+              </ImageReveal>
             </div>
           ))}
         </div>

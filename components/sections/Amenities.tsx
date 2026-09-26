@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import ImageReveal from '@/components/ImageReveal';
 import { Waves, Dumbbell, Briefcase, Gamepad2, UtensilsCrossed, Sofa, Baby, Trees, PartyPopper } from 'lucide-react';
 
 const amenities = [
@@ -97,7 +98,7 @@ export default function Amenities() {
                 className={`reveal flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-24 items-center`}
               >
                 {/* Image */}
-                <div className="w-full lg:w-1/2 aspect-[4/3] relative overflow-hidden group">
+                <ImageReveal className="w-full lg:w-1/2 aspect-[4/3] relative overflow-hidden group">
                   <Image
                     src={amenity.image}
                     alt={amenity.title}
@@ -118,7 +119,7 @@ export default function Amenities() {
                     }`}
                   />
                   <div className="absolute inset-0 bg-charcoal/10 transition-opacity duration-700 group-hover:bg-charcoal/20" />
-                </div>
+                </ImageReveal>
 
                 {/* Text */}
                 <div className="w-full lg:w-1/2 flex flex-col justify-center">

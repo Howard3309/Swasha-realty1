@@ -7,6 +7,7 @@ import VirtualTour from '@/components/sections/VirtualTour';
 import Testimonials from '@/components/sections/Testimonials';
 import Contact from '@/components/sections/Contact';
 import Footer from '@/components/Footer';
+import ScrollToTop from '@/components/ScrollToTop';
 import dynamic from 'next/dynamic';
 
 const FloorPlans = dynamic(() => import('@/components/sections/FloorPlans'));
@@ -26,6 +27,7 @@ export default function Home() {
       <Testimonials />
       <Contact />
       <Footer />
+      <ScrollToTop />
     </main>
   );
 }
