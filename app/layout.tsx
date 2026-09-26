@@ -1,5 +1,6 @@
 import type {Metadata} from 'next';
 import { Inter, Playfair_Display } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -25,6 +26,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <body suppressHydrationWarning className="bg-charcoal text-offwhite">
         {children}
+        <Analytics />
       </body>
     </html>
   );
